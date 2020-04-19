@@ -1,0 +1,103 @@
+@startuml Ultrasonic_Car_UML
+
+skinparam ClassAttributeIconSize 0
+
+class Car{
+    'Attributes
+    -int n1
+    -int n2
+    -int n3
+    -int n4
+    -int enableA
+    -int enableB
+    -Motor leftMotor
+    -Motor rightMotor
+
+    'Methods:
+    +Car(int n1, int n2, int enableA, int n3, int n4, int enableB)
+    +void reverse(int speed=255)
+    +void forward(int speed=255)
+    +void stop()
+    +void right(int speed=255)
+    +void left(int speed=255)
+    +void move(int motorASpeed, int motorBSpeed)
+}
+
+class Motor{
+    'attributes:
+    -int pin1
+    -int pin2
+    -int enablePin
+    
+    'Methods:
+    +void stop()
+    +void forward(int speed)
+    +void reverse(int speed)
+    +Motor()
+    +void setPins(int pin1, int pin2, int enablePin)
+}
+
+interface RunnableCar{
+
+}
+
+class UltrasonicSensor{
+
+}
+
+class Menu{
+    ' Methods
+    +displayMainMenu()
+    +selectOption()
+    +changeSelectedOption()
+
+
+}
+
+class SelfDrivingCar{
+    ' Methods:
+    +run()
+}
+
+class BluetoothCar {
+    ' Attributes:
+    -BluetoothSensor bluetoothSensor
+
+    ' Methods
+    +run()
+}
+
+
+class TestCar {
+    ' Method
+    +run()
+}
+
+class CarModeManager{
+    'Methods:
+    +changeCarMode(int mode)
+}
+
+class System {
+    +mainLoop()
+}
+
+
+' UML drawing:
+Car --- SelfDrivingCar
+Car --- BluetoothCar
+Car --- TestCar
+RunnableCar <|.up. SelfDrivingCar
+RunnableCar <|.up. BluetoothCar
+RunnableCar <|.up. TestCar
+
+Car "1"-left-"2" Motor
+SelfDrivingCar -- UltrasonicSensor
+
+CarModeManager "1"*--"1..*" Car
+
+System -right- CarModeManager
+System -left- Menu
+
+
+@enduml

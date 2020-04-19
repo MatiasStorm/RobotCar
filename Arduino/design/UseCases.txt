@@ -1,0 +1,15 @@
+Use case description:
+
+The car should be able to display a menu, have buttons to change between modes of driving. Driving modes should be using bluetooth, autonomous and it shall be easy to add more modes.
+In bluetooth mode the car should be able to connect to a phone or a ps3 controller.
+In autonomous mode the car should use an ultrasonic sensor to determine its surroundings.
+You should also be albe to do test runs with the car, i.e. pick a speed and direction, this will be used for calibation of the motors.
+The car should have a kill switch to stop it and return to the main menu.
+
+CASE 1: Autonomouse car:
+- User starts the car.
+- The car displays the menu on the display.
+- User user picks the self driving mode.
+- The car waits for an amount of secounds before starting to drive.
+- When the user wants the car to stop he/she presses the kill switch.
+- The car again displays the main menu.
