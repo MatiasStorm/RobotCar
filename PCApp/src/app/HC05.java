@@ -1,4 +1,7 @@
 package  app;
+
+import com.intel.bluetooth.RemoteDeviceHelper;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -28,7 +31,7 @@ public class HC05 {
         }
     }
 
-    private void go() throws Exception {
+    public void go() throws Exception {
         //scan for all devices:
         scanFinished = false;
         LocalDevice.getLocalDevice().getDiscoveryAgent().startInquiry(DiscoveryAgent.GIAC, new DiscoveryListener() {
@@ -37,7 +40,7 @@ public class HC05 {
                 try {
                     String name = btDevice.getFriendlyName(false);
                     System.out.format("%s (%s)\n", name, btDevice.getBluetoothAddress());
-                    if (name.matches("HC.*")) {
+                    if (name.matches("K10000")) {
                         hc05device = btDevice;
                         System.out.println("got it!");
                     }
@@ -49,6 +52,7 @@ public class HC05 {
             @Override
             public void inquiryCompleted(int discType) {
                 scanFinished = true;
+                System.out.println("Device Inquiry completed!");
             }
 
             @Override
@@ -89,7 +93,7 @@ public class HC05 {
                     @Override
                     public void servicesDiscovered(int transID, ServiceRecord[] servRecord) {
                         for (int i = 0; i < servRecord.length; i++) {
-                            hc05Url = servRecord[i].getConnectionURL(ServiceRecord.NOAUTHENTICATE_NOENCRYPT, false);
+                            hc05Url = servRecord[i].getConnectionURL(ServiceRecord.AUTHENTICATE_NOENCRYPT, false);
                             if (hc05Url != null) {
                                 break; //take the first one
                             }
@@ -101,17 +105,23 @@ public class HC05 {
             Thread.sleep(500);
         }
 
-        System.out.println(hc05device.getBluetoothAddress());
+//        System.out.println("MAC: " + hc05device.getBluetoothAddress());
+//        System.out.println(hc05device.isAuthenticated());
+//        StreamConnection streamConnection = (StreamConnection) Connector.open(hc05Url);
         System.out.println(hc05Url);
-
+//        try{
+//            RemoteDeviceHelper.authenticate(hc05device);
+//        } catch (IOException e){
+//            e.printStackTrace();
+//        }
         //if you know your hc05Url this is all you need:
-        StreamConnection streamConnection = (StreamConnection) Connector.open(hc05Url);
-        OutputStream os = streamConnection.openOutputStream();
-        InputStream is = streamConnection.openInputStream();
-
-        os.write("1".getBytes()); //just send '1' to the device
-        os.close();
-        is.close();
-        streamConnection.close();
+//        OutputStream os = streamConnection.openOutputStream();
+//        InputStream is = streamConnection.openInputStream();
+//
+//        os.write("1".getBytes()); //just send '1' to the device
+//        os.close();
+//        is.close();
+//        streamConnection.close();
     }
 }
+

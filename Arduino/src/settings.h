@@ -1,3 +1,6 @@
+#if !defined(SETTIGS_H)
+#define SETTIGS_H
+
 #include <Arduino.h>
 
 // Car pins:
@@ -23,3 +26,10 @@ const int ULTRA_ECHO = 10;
 
 // Buttons
 const int BUTTON_1 = A4;
+
+// Bluetooth:
+const int BLUETOOTH_TX = 10;
+const int BLUETOOTH_RX = 3;
+
+
+#endif // SETTIGS_H

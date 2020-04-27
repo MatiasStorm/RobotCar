@@ -3,21 +3,24 @@
 
 #include <Arduino.h>
 #include <LiquidCrystal.h>
+#include "settings.h"
 
 class Display{
     private:
-        LiquidCrystal lcd;
         char value[2][16];
+        LiquidCrystal *lcd;
 
         
     public:
-        Display(LiquidCrystal &lcd);
+        Display();
         void update();
         void setRows(char *value);
         void setFirstRow(char *value);
         void setSecondRow(char *value);
         void clear();
         void clearRows();
+        void write(char *message);
+        LiquidCrystal* getLCD();
 };
 
 

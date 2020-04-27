@@ -3,9 +3,19 @@
 
 CarModeManager::CarModeManager(){
     this->car = new Car(CAR_N1, CAR_N2, CAR_EN_A, CAR_N3, CAR_N4, CAR_EN_B);
+    pinMode(BUTTON_1, INPUT);
+
+    initializeSelfDrivingCar();
+    initializeBluetoothCar();
+}
+
+void CarModeManager::initializeSelfDrivingCar(){
     this->ultrasonicSensor = new UltrasonicSensor(ULTRA_TRIG, ULTRA_ECHO);
     this->selfDrivingCar = new SelfDrivingCar(*(this->car), *(this->ultrasonicSensor));
-    pinMode(BUTTON_1, INPUT);
+}
+
+void CarModeManager::initializeBluetoothCar(){
+    this->bluetoothCar = new BluetoothCar(*(this->car));
 }
 
 
@@ -36,7 +46,10 @@ RunnableCar* CarModeManager::pickCar(Display &display){
 
     char *selectedCarOption = carOptions[selectedOptionIndex];
     if(selectedOptionIndex == 0){
-        return this->selfDrivingCar;
+        return (RunnableCar*) (this->selfDrivingCar);
+    }
+    else if(selectedOptionIndex == 1){
+        return (RunnableCar*) (this->bluetoothCar);
     }
 
 }
@@ -48,4 +61,8 @@ void CarModeManager::displayOptions(Display &display){
     sprintf(displayMessage, ">%s\n %s", carOptions[selectedOptionIndex], carOptions[(selectedOptionIndex + 1) % optionsLength]);
     display.setRows(displayMessage);
     display.update();
+}
+
+BluetoothCar* CarModeManager::getBluetoothCar(){
+    return this->bluetoothCar;
 }

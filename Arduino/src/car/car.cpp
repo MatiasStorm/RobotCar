@@ -33,44 +33,44 @@ Car::Car(int n1, int n2, int enableA, int n3, int n4, int enableB){
 }
 
 void Car::reverse(int speed){
-    if(activity != CarActivity::REVERSE){
+    // if(activity != CarActivity::REVERSE){
         leftMotor.reverse(speed);
         rightMotor.reverse(speed);
-        activity = CarActivity::REVERSE;
-    }
+    //     activity = CarActivity::REVERSE;
+    // }
 }
 
 void Car::forward(int speed){
-    if(activity != CarActivity::FORWARD){
+    // if(activity != CarActivity::FORWARD){
         leftMotor.forward(speed);
         rightMotor.forward(speed);
-        activity = CarActivity::FORWARD;
-    }
+    //     activity = CarActivity::FORWARD;
+    // }
 }
 
 
 void Car::stop(){
-    if(activity != CarActivity::STOP){
+    // if(activity != CarActivity::STOP){
         leftMotor.stop();
         rightMotor.stop();
-        activity = CarActivity::STOP;
-    }
+    //     activity = CarActivity::STOP;
+    // }
 }
 
 void Car::right(int speed){
-    if(activity != CarActivity::RIGHT){
+    // if(activity != CarActivity::RIGHT){
         leftMotor.forward(speed);
         rightMotor.reverse(speed);
-        activity = CarActivity::RIGHT;
-    }
+    //     activity = CarActivity::RIGHT;
+    // }
 }
 
 void Car::left(int speed){
-    if(activity != CarActivity::LEFT){
+    // if(activity != CarActivity::LEFT){
         leftMotor.reverse(speed);
         rightMotor.forward(speed);
-        activity = CarActivity::LEFT;
-    }
+        // activity = CarActivity::LEFT;
+    // }
 }
 
 void Car::move(int leftMotorSpeed, int rightMotorSpeed){

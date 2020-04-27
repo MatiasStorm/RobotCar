@@ -1,14 +1,15 @@
 #include "Display.h"
 
-Display::Display(LiquidCrystal &_lcd):lcd(_lcd){
-    this->lcd.begin(16,2);
+Display::Display(){
+    this->lcd = new LiquidCrystal(LCD_RS, LCD_EN, LCD_D_4, LCD_D_5, LCD_D_6, LCD_D_7);
+    this->lcd->begin(16,2);
 };
 
 void Display::update(){
-    lcd.clear();
-    lcd.print(value[0]);
-    lcd.setCursor(0,1);
-    lcd.print(value[1]);
+    lcd->clear();
+    lcd->print(value[0]);
+    lcd->setCursor(0,1);
+    lcd->print(value[1]);
 }
 
 void Display::setRows(char *newValue){
@@ -37,10 +38,18 @@ void Display::setSecondRow(char* newValue){
 }
 
 void Display::clear(){
-    lcd.clear();
+    lcd->clear();
 }
 
 void Display::clearRows(){
     strcpy(this->value[0], "\0");
     strcpy(this->value[1], "\0");
+}
+
+void Display::write(char* message){
+    lcd->write(message);
+}
+
+LiquidCrystal* Display::getLCD(){
+    return lcd;
 }
