@@ -21,15 +21,15 @@ const int LCD_D_7 = 2;
 
 
 // Ultrasonic sensor:
-const int ULTRA_TRIG = 9;
-const int ULTRA_ECHO = 10;
+const int ULTRA_TRIG = 3;
+const int ULTRA_ECHO = 9;
 
 // Buttons
 const int BUTTON_1 = A4;
 
 // Bluetooth:
-const int BLUETOOTH_TX = 10;
-const int BLUETOOTH_RX = 3;
+const int BLUETOOTH_TX = 11;
+const int BLUETOOTH_RX = 10;
 
 
 #endif // SETTIGS_H
