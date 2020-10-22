@@ -21,7 +21,7 @@ public class Application extends JFrame {
         setLocationRelativeTo(null);
         setSize(400, 200);
         setVisible(true);
-    }SDW
+    }
 
     private void createActions(){
         Action WAction = new AbstractAction(){
