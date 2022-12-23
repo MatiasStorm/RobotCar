@@ -1,7 +1,7 @@
 # RobotCar
 Arduino project of a toy car written in C++.
 
-The car can be operated two modes, self-driving and bluetooth controlled.
+The car can be operated in two different modes, self-driving and bluetooth controlled.
 
 ## Arduino Code
 ### src/car
